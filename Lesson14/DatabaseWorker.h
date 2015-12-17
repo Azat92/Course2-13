@@ -10,4 +10,8 @@
 
 @interface DatabaseWorker : NSObject
 - (void)createDatabase;
+-(NSMutableArray* )getAllItems;
+- (void)deleteRowWithId:(int )id;
+- (void)updateRowWithId:(int )id Name:(NSString *)name City:(NSString *)city State:(NSString *)state Zip:(int)zip Date:(NSString *)date;
+- (void)addRowWithName:(NSString *)name City:(NSString *)city State:(NSString *)state Zip:(int)zip Date:(NSString *)date;
 @end
