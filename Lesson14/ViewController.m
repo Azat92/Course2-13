@@ -31,7 +31,7 @@
     [super viewDidLoad];
     DatabaseWorker *dbWorker = [DatabaseWorker new];
     [dbWorker createDatabase];
-    
+    NSLog(@"fvff");
     return;
     id stringRef = @"sdfsdf";
     NSObject *stringObj = stringRef;

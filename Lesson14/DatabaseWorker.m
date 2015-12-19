@@ -8,6 +8,7 @@
 
 #import "DatabaseWorker.h"
 #import <sqlite3.h>
+#import "Item.h"
 
 @interface DatabaseWorker () {
     sqlite3 *_database;
@@ -19,9 +20,10 @@
 
 - (void)createDatabase {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+
     NSString *basePath = paths.firstObject;
     NSString *dbPath = [basePath stringByAppendingPathComponent:@"banklist.sqlite3"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:dbPath]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:@""]) {
         NSString *resource = [[NSBundle mainBundle] pathForResource:@"banklist" ofType:@"sqlite3"];
         [[NSFileManager defaultManager] copyItemAtPath:resource toPath:dbPath error:nil];
     }
@@ -30,7 +32,7 @@
     }
     else {
 //        [self executeSelect];
-        [self findMyName];
+       // [self findMyName];
 //        [self addRowWithName:@"MY_INSERT_NAME" city:@"Kazan" andState:@"Tatarstan"];
     }
 }
@@ -85,6 +87,93 @@
         sqlite3_reset(statement);
     }
 }
+
+- (void)deleteRowWithId:(int )id{
+    NSString *query = @"delete FROM failed_banks where id = ?";
+    if (!_database)[self createDatabase];
+    sqlite3_stmt *statement;
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, NULL) == SQLITE_OK) {
+        sqlite3_bind_int(statement, 1, id);
+        if(sqlite3_step(statement) == SQLITE_DONE)
+            NSLog(@"done");
+        else
+            NSLog(@"ERROR");
+        sqlite3_reset(statement);
+    }
+}
+
+- (void)updateRowWithId:(int )id Name:(NSString *)name City:(NSString *)city State:(NSString *)state Zip:(int)zip Date:(NSString *)date {
+    NSString *query = @"update  failed_banks set name = ? , city = ? , state = ? , zip = ? , updated_date = ? where id =  ?";
+    if (!_database)[self createDatabase];
+    sqlite3_stmt *statement;
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, NULL) == SQLITE_OK) {
+        sqlite3_bind_text(statement, 1, [name UTF8String], -1, NULL);
+        sqlite3_bind_text(statement, 2, [city UTF8String], -1, NULL);
+        sqlite3_bind_text(statement, 3, [state UTF8String], -1, NULL);
+        sqlite3_bind_int(statement, 4, zip);
+        sqlite3_bind_text(statement, 5, [date UTF8String], -1, NULL);
+        sqlite3_bind_int(statement, 6, id);
+        if(sqlite3_step(statement) == SQLITE_DONE)
+            NSLog(@"done");
+        else
+            NSLog(@"ERROR");
+        sqlite3_reset(statement);
+    }
+}
+
+- (void)addRowWithName:(NSString *)name City:(NSString *)city State:(NSString *)state Zip:(int)zip Date:(NSString *)date {
+    NSString *query = @"insert into failed_banks(name, city, state , zip , close_date , updated_date) values ( ? , ? , ? , ? , ? , ?)";
+    if (!_database)[self createDatabase];
+    sqlite3_stmt *statement;
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, NULL) == SQLITE_OK) {
+        sqlite3_bind_text(statement, 1, [name UTF8String], -1, NULL);
+        sqlite3_bind_text(statement, 2, [city UTF8String], -1, NULL);
+        sqlite3_bind_text(statement, 3, [state UTF8String], -1, NULL);
+        sqlite3_bind_int(statement, 4, zip);
+        sqlite3_bind_text(statement, 5, [date UTF8String], -1, NULL);
+        sqlite3_bind_text(statement, 6, [date UTF8String], -1, NULL);
+        if(sqlite3_step(statement) == SQLITE_DONE)
+            NSLog(@"done");
+        else
+            NSLog(@"ERROR");
+        sqlite3_reset(statement);
+    }
+}
+
+-(NSMutableArray* )getAllItems{
+    NSMutableArray *allItems = [NSMutableArray new];
+    if (!_database)[self createDatabase];
+    NSString *query = @"SELECT  id, name, city, state , zip , close_date , updated_date  FROM failed_banks where id > ?";
+    sqlite3_stmt *statement;
+    if (sqlite3_prepare_v2(_database, [query UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        sqlite3_bind_int(statement, 1, -1);
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            Item *item = [Item new];
+            int uniqueId = sqlite3_column_int(statement, 0);
+            char *nameChars = (char *) sqlite3_column_text(statement, 1);
+            char *cityChars = (char *) sqlite3_column_text(statement, 2);
+            char *stateChars = (char *) sqlite3_column_text(statement, 3);
+            int zipChars =  sqlite3_column_int(statement, 4);
+            char *closeDateChars = (char *) sqlite3_column_text(statement, 5);
+            char *updateDateChars = (char *) sqlite3_column_text(statement, 6);
+            
+            item.id = uniqueId;
+            item.name = [NSString stringWithFormat:@"%s",nameChars];
+            item.city = [NSString stringWithFormat:@"%s", cityChars];
+            item.state =[NSString stringWithFormat:@"%s", stateChars];
+            item.zip =  zipChars;
+            item.close_date = [NSString stringWithFormat:@"%s", closeDateChars];
+            item.update_date = [NSString stringWithFormat:@"%s", updateDateChars];
+            
+            [allItems addObject:item];
+            
+        }
+        sqlite3_finalize(statement);
+    }
+    return allItems;
+
+}
+
 
 
 @end

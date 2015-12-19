@@ -18,6 +18,10 @@
 		AA23979E1C11DC4800DB327F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AA23979D1C11DC4800DB327F /* libsqlite3.tbd */; };
 		AA2397A11C11DC5600DB327F /* DatabaseWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2397A01C11DC5600DB327F /* DatabaseWorker.m */; };
 		AA2397A31C11DDD000DB327F /* banklist.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = AA2397A21C11DDD000DB327F /* banklist.sqlite3 */; };
+		E5D4B4531C21CAAF00004234 /* MyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D4B4521C21CAAF00004234 /* MyTableViewController.m */; };
+		E5D4B45E1C2208FD00004234 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D4B45D1C2208FD00004234 /* Item.m */; };
+		E5D4B4611C221FC700004234 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D4B4601C221FC700004234 /* DetailViewController.m */; };
+		E5D4B4641C22BAD200004234 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5D4B4631C22BAD200004234 /* AddViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,14 @@
 		AA23979F1C11DC5600DB327F /* DatabaseWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseWorker.h; sourceTree = "<group>"; };
 		AA2397A01C11DC5600DB327F /* DatabaseWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseWorker.m; sourceTree = "<group>"; };
 		AA2397A21C11DDD000DB327F /* banklist.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = banklist.sqlite3; sourceTree = "<group>"; };
+		E5D4B4511C21CAAF00004234 /* MyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewController.h; sourceTree = "<group>"; };
+		E5D4B4521C21CAAF00004234 /* MyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewController.m; sourceTree = "<group>"; };
+		E5D4B45C1C2208FD00004234 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		E5D4B45D1C2208FD00004234 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
+		E5D4B45F1C221FC700004234 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		E5D4B4601C221FC700004234 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		E5D4B4621C22BAD200004234 /* AddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddViewController.h; sourceTree = "<group>"; };
+		E5D4B4631C22BAD200004234 /* AddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,11 +84,11 @@
 		AA2397801C11D55900DB327F /* Lesson14 */ = {
 			isa = PBXGroup;
 			children = (
+				AA23978A1C11D55900DB327F /* Main.storyboard */,
 				AA2397841C11D55900DB327F /* AppDelegate.h */,
 				AA2397851C11D55900DB327F /* AppDelegate.m */,
 				AA2397871C11D55900DB327F /* ViewController.h */,
 				AA2397881C11D55900DB327F /* ViewController.m */,
-				AA23978A1C11D55900DB327F /* Main.storyboard */,
 				AA23978D1C11D55900DB327F /* Assets.xcassets */,
 				AA23978F1C11D55900DB327F /* LaunchScreen.storyboard */,
 				AA2397921C11D55900DB327F /* Info.plist */,
@@ -87,6 +99,14 @@
 				AA23979F1C11DC5600DB327F /* DatabaseWorker.h */,
 				AA2397A01C11DC5600DB327F /* DatabaseWorker.m */,
 				AA2397A21C11DDD000DB327F /* banklist.sqlite3 */,
+				E5D4B4511C21CAAF00004234 /* MyTableViewController.h */,
+				E5D4B4521C21CAAF00004234 /* MyTableViewController.m */,
+				E5D4B45C1C2208FD00004234 /* Item.h */,
+				E5D4B45D1C2208FD00004234 /* Item.m */,
+				E5D4B45F1C221FC700004234 /* DetailViewController.h */,
+				E5D4B4601C221FC700004234 /* DetailViewController.m */,
+				E5D4B4621C22BAD200004234 /* AddViewController.h */,
+				E5D4B4631C22BAD200004234 /* AddViewController.m */,
 			);
 			path = Lesson14;
 			sourceTree = "<group>";
@@ -174,8 +194,12 @@
 				AA23979C1C11D8FC00DB327F /* SampleClass.m in Sources */,
 				AA2397891C11D55900DB327F /* ViewController.m in Sources */,
 				AA2397861C11D55900DB327F /* AppDelegate.m in Sources */,
+				E5D4B4611C221FC700004234 /* DetailViewController.m in Sources */,
+				E5D4B4531C21CAAF00004234 /* MyTableViewController.m in Sources */,
 				AA2397831C11D55900DB327F /* main.m in Sources */,
+				E5D4B45E1C2208FD00004234 /* Item.m in Sources */,
 				AA2397A11C11DC5600DB327F /* DatabaseWorker.m in Sources */,
+				E5D4B4641C22BAD200004234 /* AddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +348,7 @@
 				AA2397971C11D55900DB327F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
