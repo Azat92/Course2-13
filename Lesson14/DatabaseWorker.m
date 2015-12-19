@@ -19,9 +19,10 @@
 @implementation DatabaseWorker
 
 - (void)createDatabase {
-    //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 
-    NSString *dbPath = @"/Users/mariatimofeeva/GitHub/Projects/Course2-13/Lesson14/banklist.sqlite3";
+    NSString *basePath = paths.firstObject;
+    NSString *dbPath = [basePath stringByAppendingPathComponent:@"banklist.sqlite3"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:@""]) {
         NSString *resource = [[NSBundle mainBundle] pathForResource:@"banklist" ofType:@"sqlite3"];
         [[NSFileManager defaultManager] copyItemAtPath:resource toPath:dbPath error:nil];

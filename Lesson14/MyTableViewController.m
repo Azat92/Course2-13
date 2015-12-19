@@ -18,9 +18,10 @@
 @implementation MyTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+        [super viewDidLoad];
    _array = [[NSMutableArray alloc] initWithArray:[[DatabaseWorker new] getAllItems]];
-    
+
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,6 +83,7 @@
     Item  *item = [_array objectAtIndex:indexPath.row];
     DetailViewController *dvc = segue.destinationViewController;
         dvc.item = item;
+       
     }
     
     
